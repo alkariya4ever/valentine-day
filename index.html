@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day, Alka! ❤️</title>
+    <style>
+        body {
+            background-color: pink;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            color: #d10057;
+            font-size: 36px;
+        }
+        p {
+            font-size: 20px;
+        }
+        .floating-container {
+            position: absolute;
+            animation: floatAnimation 4s infinite alternate ease-in-out;
+        }
+        img {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        @keyframes floatAnimation {
+            0% {
+                transform: translateY(0px);
+            }
+            100% {
+                transform: translateY(-50px);
+            }
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: heartsAnimation 5s infinite ease-in-out;
+        }
+        @keyframes heartsAnimation {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+        .love-letter {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day, Alka! ❤️💖</h1>
+    <p>You're the love of my life! Here's something special for you. 🎁</p>
+    
+    <audio id="bg-music" loop>
+        <source src="music/romantic.mp3" type="audio/mp3">
+    </audio>
+    <button onclick="document.getElementById('bg-music').play()">Play Romantic Music 🎶</button>
+    
+    <button onclick="showLoveLetter()">Open Love Letter 💌</button>
+    <div id="love-letter" class="love-letter">
+        <h2>My Dearest Alka,</h2>
+        <p>You are the light of my life, the reason for my smile, and the love that fills my heart. I cherish every moment with you and look forward to a lifetime of happiness together. ❤️</p>
+        <button onclick="hideLoveLetter()">Close</button>
+    </div>
+    
+    <script>
+        const images = [
+           "images/photo6.jpg", "images/photo7.jpg", "images/photo8.jpg", "images/photo9.jpg", 
+            "images/photo10.jpg", "images/photo11.jpg", "images/photo1.jpg", "images/photo2.jpg", 
+            "images/photo3.jpg", "images/photo4.jpeg", "images/photo5.jpg"
+        ];
+        
+        function createFloatingImages() {
+            images.forEach((src, index) => {
+                let imgElement = document.createElement("img");
+                imgElement.src = src;
+                imgElement.classList.add("floating-container");
+                imgElement.style.position = "absolute";
+                imgElement.style.left = `${(index + 1) * 8}%`;
+                imgElement.style.top = `${Math.random() * 70 + 10}%`;
+                imgElement.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                imgElement.onclick = () => alert("I love you, Alka! 💖");
+                document.body.appendChild(imgElement);
+            });
+        }
+        
+        function createFloatingHearts() {
+            setInterval(() => {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.classList.add("heart");
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = "100%";
+                heart.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 500);
+        }
+        
+        function showLoveLetter() {
+            document.getElementById("love-letter").style.display = "block";
+        }
+        function hideLoveLetter() {
+            document.getElementById("love-letter").style.display = "none";
+        }
+        
+        window.onload = function() {
+            createFloatingImages();
+            createFloatingHearts();
+        };
+    </script>
+</body>
+</html>
